@@ -17,6 +17,9 @@ set shiftwidth=3
 set softtabstop=3
 set expandtab
 
+" No swap
+set noswapfile
+
 " Sane-itization
 set encoding=utf-8
 set scrolloff=3
