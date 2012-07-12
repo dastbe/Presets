@@ -1,6 +1,6 @@
 " My vimrc
 " David Bell
-
+" 7/12/12
 
 " Use Pathogen
 call pathogen#infect()
