@@ -1,3 +1,7 @@
+" My vimrc
+" David Bell
+
+
 " Use Pathogen
 call pathogen#infect()
 syntax on
