@@ -29,5 +29,5 @@
 	path = solarized
 	url = https://github.com/altercation/solarized.git
 [submodule "vim-less"]
-	path = vim-less
+	path = ./vim/bundle/vim-less
 	url = https://github.com/groenewege/vim-less
