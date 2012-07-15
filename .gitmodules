@@ -28,3 +28,6 @@
 [submodule "solarized"]
 	path = solarized
 	url = https://github.com/altercation/solarized.git
+[submodule "vim-less"]
+	path = vim-less
+	url = https://github.com/groenewege/vim-less
