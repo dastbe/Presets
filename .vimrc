@@ -106,5 +106,7 @@ nnoremap <C-l> <C-w>l
 
 " New filetype for Pro*C
 au BufRead,BufNewFile *.pc set filetype=esqlc
+
+" More convenient than colon!
 nnoremap ; :
 vnoremap ; :

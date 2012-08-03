@@ -28,3 +28,9 @@
 [submodule ".vim/bundle/vim-dart"]
 	path = .vim/bundle/vim-dart
 	url = https://github.com/bartekd/vim-dart.git
+[submodule "solarized"]
+	path = solarized
+	url = https://github.com/altercation/solarized.git
+[submodule "vim-less"]
+	path = ./vim/bundle/vim-less
+	url = https://github.com/groenewege/vim-less
