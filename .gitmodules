@@ -25,3 +25,6 @@
 [submodule "Terminal-Solarized"]
 	path = Terminal-Solarized
 	url = https://github.com/tomislav/osx-lion-terminal.app-colors-solarized.git
+[submodule ".vim/bundle/vim-dart"]
+	path = .vim/bundle/vim-dart
+	url = https://github.com/bartekd/vim-dart.git
