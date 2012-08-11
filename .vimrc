@@ -107,5 +107,8 @@ nnoremap <C-l> <C-w>l
 " New filetype for Pro*C
 au BufRead,BufNewFile *.pc set filetype=esqlc
 
+" new filetype for SCSS
+au BufRead,BufNewFile *.scss set filetype=scss
+
 " More convenient than colon!
 nnoremap ; :
