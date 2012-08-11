@@ -112,3 +112,4 @@ au BufRead,BufNewFile *.scss set filetype=scss
 
 " More convenient than colon!
 nnoremap ; :
+vnoremap ; :
