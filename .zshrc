@@ -2,7 +2,7 @@ PATH=/usr/local/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export CLICOLOR=1;
-export LSCOLORS=exfxcxdxbxegedabagacad; # It is the default value on OSX, so this line can be omitted
+export LS_COLORS=exfxcxdxbxegedabagacad; # It is the default value on OSX, so this line can be omitted
 
 autoload -Uz compinit
 compinit

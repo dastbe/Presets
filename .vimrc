@@ -45,6 +45,10 @@ set undofile
 " Leader key
 let mapleader = ","
 
+" Relative numbers vs absolute numbers
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
 " Search
 nnoremap / /\v
 vnoremap / /\v
