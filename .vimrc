@@ -110,6 +110,19 @@ au BufRead,BufNewFile *.pc set filetype=esqlc
 " new filetype for SCSS
 au BufRead,BufNewFile *.scss set filetype=scss
 
+" new filetype for Scala
+au BufRead,BufNewFile *.scala set filetype=scala
+
+"C++11 check
+if (executable('clang++'))
+   let g:syntastic_cpp_compiler = 'clang++'
+   let g:syntastic_cpp_compiler_options = '-Wall -std=c++11 -stdlib=libc++'
+   au BufRead,BufNewFile *.cpp set syntax=cpp11
+else
+   let g:syntastic_cpp_compiler = 'g++'
+   let g:syntastic_cpp_compiler_options = '-Wall'
+endif
+
 " More convenient than colon!
 nnoremap ; :
 vnoremap ; :
