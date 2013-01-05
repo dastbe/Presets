@@ -43,19 +43,15 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 
-if version >= 730
+if version >= 703
    set relativenumber
    set undofile
+   autocmd InsertEnter * :set number
+   autocmd InsertLeave * :set relativenumber
 endif
 
 " Leader key
 let mapleader = ","
-
-" Relative numbers vs absolute numbers
-if version >= 730
-   autocmd InsertEnter * :set number
-   autocmd InsertLeave * :set relativenumber
-endif
 
 " Search
 nnoremap / /\v
