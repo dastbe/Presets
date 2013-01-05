@@ -11,6 +11,9 @@ filetype plugin on
 " Default Color Scheme
 colorscheme molokai
 
+" ctags
+set tags=./tags;/
+
 " vi compatability/security
 set nocompatible
 set modelines=0
@@ -39,11 +42,20 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
-set undofile
+
+if version >= 730
+   set relativenumber
+   set undofile
+endif
 
 " Leader key
 let mapleader = ","
+
+" Relative numbers vs absolute numbers
+if version >= 730
+   autocmd InsertEnter * :set number
+   autocmd InsertLeave * :set relativenumber
+endif
 
 " Search
 nnoremap / /\v
@@ -62,7 +74,13 @@ vnoremap <tab> %
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=85
+
+if version >= 730
+   set colorcolumn=85
+endif
+
+" Tagbar settings
+let g:tagbar_autoclose = 1
 
 " Invisibles
 set list
@@ -97,6 +115,9 @@ inoremap jj <ESC>
 
 " Quick split window
 nnoremap <leader>w <C-w>v<C-w>l
+
+" tagbar command
+nnoremap <silent> <leader>t :TagbarToggle<CR>
 
 " Moving around splits
 nnoremap <C-h> <C-w>h
