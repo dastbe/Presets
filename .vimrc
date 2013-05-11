@@ -63,20 +63,19 @@ set incsearch
 set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
 
 " Line length handling
 set wrap
 set textwidth=79
 set formatoptions=qrn1
 
-if version >= 730
-   set colorcolumn=85
-endif
+" if version >= 730
+   set colorcolumn=120
+" endif
 
 " Tagbar settings
-let g:tagbar_autoclose = 1
+let g:tagbar_autoclose = 0
+let g:tagbar_autofocus = 1
 
 " Invisibles
 set list
@@ -94,6 +93,11 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" set foldcolumn=3
+set foldmethod=syntax
+set foldlevelstart=8
+nnoremap <space> za
+" setlocal foldmethod = syntax
 " Lose focus -> Save
 au FocusLost * :wa
 
@@ -102,6 +106,9 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Fold tag
 nnoremap <leader>ft Vatzf
+
+nnoremap <silent> <leader>v :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen=1
 
 " Quickly open .vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
@@ -113,7 +120,7 @@ inoremap jj <ESC>
 nnoremap <leader>w <C-w>v<C-w>l
 
 " tagbar command
-nnoremap <silent> <leader>t :TagbarToggle<CR>
+nnoremap <silent> <leader>t :TagbarOpenAutoClose<CR>
 
 " Moving around splits
 nnoremap <C-h> <C-w>h
@@ -130,6 +137,7 @@ au BufRead,BufNewFile *.scss set filetype=scss
 " new filetype for Scala
 au BufRead,BufNewFile *.scala set filetype=scala
 
+au BufRead,BufNewFile *.ypp set filetype=yacc
 "C++11 check
 if (executable('clang++'))
    let g:syntastic_cpp_compiler = 'clang++'
