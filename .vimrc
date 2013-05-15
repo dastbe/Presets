@@ -1,27 +1,29 @@
-" My vimrc
-" David Bell
-" 7/12/12
+set nocompatible
+filetype off
 
-" Use Pathogen
-call pathogen#infect()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdtree'
+Bundle 'mbbill/undotree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-fugitive'
+Bundle 'majutsushi/tagbar'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'travitch/hasksyn'
+Bundle 'Tabular'
+Bundle 'go.vim'
+"Bundle 'vim-jp/cpp-vim'
+
 syntax on
 filetype plugin indent on
-filetype plugin on
 
-" Default Color Scheme
 colorscheme molokai
 
-" ctags
-set tags=./tags;/
-
-" vi compatability/security
-set nocompatible
-set modelines=0
-
 " Tabs
-set tabstop=3
-set shiftwidth=3
-set softtabstop=3
 set expandtab
 
 " No swap
@@ -69,9 +71,7 @@ set wrap
 set textwidth=79
 set formatoptions=qrn1
 
-" if version >= 730
-   set colorcolumn=120
-" endif
+set colorcolumn=80
 
 " Tagbar settings
 let g:tagbar_autoclose = 0
@@ -97,8 +97,6 @@ nnoremap k gk
 set foldmethod=syntax
 set foldlevelstart=8
 nnoremap <space> za
-" setlocal foldmethod = syntax
-" Lose focus -> Save
 au FocusLost * :wa
 
 " Strip trailing whitespace
@@ -107,6 +105,7 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Fold tag
 nnoremap <leader>ft Vatzf
 
+" NERDTree
 nnoremap <silent> <leader>v :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen=1
 
@@ -119,6 +118,10 @@ inoremap jj <ESC>
 " Quick split window
 nnoremap <leader>w <C-w>v<C-w>l
 
+" semicolon -> colon
+nnoremap ; :
+vnoremap ; :
+
 " tagbar command
 nnoremap <silent> <leader>t :TagbarOpenAutoClose<CR>
 
@@ -128,26 +131,16 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+au BufRead,BufNewFile *.* set tabstop=3
+au BufRead,BufNewFile *.* set shiftwidth=3
+au BufRead,BufNewFile *.* set softtabstop=3
+
 " New filetype for Pro*C
 au BufRead,BufNewFile *.pc set filetype=esqlc
 
-" new filetype for SCSS
-au BufRead,BufNewFile *.scss set filetype=scss
-
-" new filetype for Scala
-au BufRead,BufNewFile *.scala set filetype=scala
-
 au BufRead,BufNewFile *.ypp set filetype=yacc
-"C++11 check
-if (executable('clang++'))
-   let g:syntastic_cpp_compiler = 'clang++'
-   let g:syntastic_cpp_compiler_options = '-Wall -std=c++11 -stdlib=libc++'
-   au BufRead,BufNewFile *.cpp set syntax=cpp11
-else
-   let g:syntastic_cpp_compiler = 'g++'
-   let g:syntastic_cpp_compiler_options = '-Wall'
-endif
 
-" More convenient than colon!
-nnoremap ; :
-vnoremap ; :
+au BufRead,BufNewFile *.hs set tabstop=4
+au BufRead,BufNewFile *.hs set shiftwidth=4
+au BufRead,BufNewFile *.hs set softtabstop=4
+
