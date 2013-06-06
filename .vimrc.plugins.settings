@@ -1,0 +1,40 @@
+" Haskell-mode {
+
+   " Define Safari as default Haddock browser
+   let g:haddock_browser = "open"
+   let g:haddock_browser_callformat = "%s %s"
+
+   " Define Homebrew-installed GHC as default
+   let g:ghc = "/usr/local/bin/ghc"
+
+" }
+
+" GitGutter {
+
+   " Enable GitGutter by default
+   let g:gitgutter_enabled = 1
+
+   " Have GitGutter highlight lines
+   let g:gitgutter_highlight_lines = 1
+
+   " Run GitGutter eagerly
+   let g:gitgutter_eager = 1
+
+" }
+
+" NERDTree {
+
+   " Close NERDTree when file is opened
+   let g:NERDTreeQuitOnOpen=1
+
+" }
+
+" Tagbar {
+
+   " Don't autoclose (?)
+   let g:tagbar_autoclose = 0
+
+   " Move to Tagbar when opened
+   let g:tagbar_autofocus = 1
+
+" }

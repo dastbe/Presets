@@ -1,146 +1,290 @@
-set nocompatible
-filetype off
+" Environment {
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+   " Initialization {
 
-Bundle 'gmarik/vundle'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdtree'
-Bundle 'mbbill/undotree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-fugitive'
-Bundle 'majutsushi/tagbar'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'travitch/hasksyn'
-Bundle 'Tabular'
-Bundle 'go.vim'
-"Bundle 'vim-jp/cpp-vim'
+      set nocompatible
+      filetype off
+      set rtp+=~/.vim/bundle/vundle/
+      call vundle#rc()
 
-syntax on
-filetype plugin indent on
+   " }
 
-colorscheme molokai
+   " Bundles {
 
-" Tabs
-set expandtab
+      if filereadable(expand("~/.vimrc.bundles"))
+         source ~/.vimrc.bundles
+      endif
 
-" No swap
-set noswapfile
+   " }
 
-" Sane-itization
-set encoding=utf-8
-set scrolloff=3
-set autoindent
-set showmode
-set showcmd
-set hidden
-set wildmenu
-set wildmode=list:longest
-set visualbell
-set cursorline
-set ttyfast
-set ruler
-set backspace=indent,eol,start
-set laststatus=2
+" }
 
-if version >= 703
-   set relativenumber
-   set undofile
-   autocmd InsertEnter * :set number
-   autocmd InsertLeave * :set relativenumber
-endif
+" Settings {
 
-" Leader key
-let mapleader = ","
+   " Enable syntax and plugins
+   syntax on
+   filetype plugin indent on
 
-" Search
-nnoremap / /\v
-vnoremap / /\v
-set ignorecase
-set smartcase
-set gdefault
-set incsearch
-set showmatch
-set hlsearch
-nnoremap <leader><space> :noh<cr>
+   " Define colorscheme
+   set background=dark
+   colorscheme molokai
 
-" Line length handling
-set wrap
-set textwidth=79
-set formatoptions=qrn1
+   " Convert tabs to spaces
+   set expandtab
 
-set colorcolumn=80
+   " Do not create swap files
+   set noswapfile
 
-" Tagbar settings
-let g:tagbar_autoclose = 0
-let g:tagbar_autofocus = 1
+   " Use UTF for character encoding
+   set encoding=utf-8
 
-" Invisibles
-set list
-set listchars=tab:▸\ ,eol:¬
+   " leave 3 lines between cursor and screen edge when scrolling
+   set scrolloff=3
+   
+   " Copy indent from previous line
+   set autoindent
 
-" Unmap arrows in insert/normal mode
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-nnoremap j gj
-nnoremap k gk
+   " Current mode appears at bottom of window
+   set showmode
 
-" set foldcolumn=3
-set foldmethod=syntax
-set foldlevelstart=8
-nnoremap <space> za
-au FocusLost * :wa
+   " Show information about current command at bottom of window
+   set showcmd
 
-" Strip trailing whitespace
-nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+   " Show hidden characters
+   set hidden
 
-" Fold tag
-nnoremap <leader>ft Vatzf
+   " Completes to longest common command prefix and then allows
+   " tabbing through commands
+   set wildmenu
+   set wildmode=longest:full,full
 
-" NERDTree
-nnoremap <silent> <leader>v :NERDTreeToggle<CR>
-let g:NERDTreeQuitOnOpen=1
+   " No audio bell
+   set visualbell
 
-" Quickly open .vimrc
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+   " Highlight current cursor line
+   set cursorline
 
-" New escape 
-inoremap jj <ESC>
+   " Helps with draw speed (?)
+   set ttyfast
 
-" Quick split window
-nnoremap <leader>w <C-w>v<C-w>l
+   " Gives cursor location in bottom-right-hand corner
+   set ruler
 
-" semicolon -> colon
-nnoremap ; :
-vnoremap ; :
+   " Makes backspace work over auto-inserted indents and over line breaks
+   set backspace=indent,eol,start
 
-" tagbar command
-nnoremap <silent> <leader>t :TagbarOpenAutoClose<CR>
+   " Always show status line
+   set laststatus=2
 
-" Moving around splits
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+   " Show invisible characters (?)
+   "set list
 
-au BufRead,BufNewFile *.* set tabstop=3
-au BufRead,BufNewFile *.* set shiftwidth=3
-au BufRead,BufNewFile *.* set softtabstop=3
+   " Sets the list of invisible characters
+   "set listchars=tab:▸\ ,eol:¬
 
-" New filetype for Pro*C
-au BufRead,BufNewFile *.pc set filetype=esqlc
+   " Save files when focus is lost
+   au FocusLost * :wa
+   
+   " Fold based on syntax of filetype
+   set foldmethod=syntax
 
-au BufRead,BufNewFile *.ypp set filetype=yacc
+   " Auto-fold starting at the 8th ply
+   set foldlevelstart=8
+   
+   " Text wrapping {
 
-au BufRead,BufNewFile *.hs set tabstop=4
-au BufRead,BufNewFile *.hs set shiftwidth=4
-au BufRead,BufNewFile *.hs set softtabstop=4
+      " Automatically wraps texts after {textwidth} characters
+      set wrap
 
+      " Do not break mid-word
+      set nolist
+      set linebreak
+      
+      " Number of characters on a line before a line wrap is automatically
+      " inserted
+      set textwidth=79
+
+      " q -> Allow formatting of comments with "gq"
+      "
+      " r -> Automatically insert current comment leader after hitting
+      "        <Enter> in insert mode
+      "
+      " n -> When formatting text, recognize numbered lists.  This actually 
+      "        uses the 'formatlistpat' option, thus any kind of list can be
+      "        used.  The indent of the text after the number is used for the
+      "        next line.  The default is to find a number, optionally followed 
+      "        by '.', ':', ')', ']' or '}'.  Note that 'autoindent' must be 
+      "        set too.  Doesn't work well together with "2".
+      "        Example: >
+      "           1. the first item
+      "              wraps
+      "           2. the second item
+      "
+      " 1 -> Don't break a line after a one-letter word.  It's broken before 
+      "        it instead (if possible).
+      set formatoptions=qrn1
+
+      " Visualizes where textwrap will occur
+      set colorcolumn=80
+
+   " }
+
+   " Search {
+
+      " Ignore case in search when pattern is all lowercase
+      set smartcase
+
+      " Default to subsitute multiple times per line. Use g to
+      " disable this behavior
+      set gdefault
+
+      " Highlights search results
+      set hlsearch
+
+      " Search as search string is typed
+      set incsearch
+
+      " Show search results as search string is typed
+      set showmatch
+
+   " }
+
+   " Specifically for higher versions of VIM {
+
+      if version >= 703
+         " Default to relative numbering
+         set relativenumber
+
+         " Set absolute numbering in insert mode
+         autocmd InsertEnter * :set number
+
+         " Set relative numbering otherwise
+         autocmd InsertLeave * :set relativenumber
+
+         " Use an undo file
+         set undofile
+      endif
+
+   " }
+
+   " Plugin Settings {
+
+      if filereadable(expand("~/.vimrc.plugins.settings"))
+         source ~/.vimrc.plugins.settings
+      endif
+
+   " }
+
+" }
+
+" KeyBindings {
+
+   " Global Leader Key
+   let mapleader = ","
+
+   " Rebind for leaving insert mode
+   inoremap jj <ESC>
+   
+   " Rebind search to use magic mode
+   nnoremap / /\v
+   vnoremap / /\v
+
+   " Removes highlighted search results
+   nnoremap <leader><space> :noh<cr>
+
+
+   " Unmap arrows {
+
+      nnoremap <up> <nop>
+      nnoremap <down> <nop>
+      nnoremap <left> <nop>
+      nnoremap <right> <nop>
+      inoremap <up> <nop>
+      inoremap <down> <nop>
+      inoremap <left> <nop>
+      inoremap <right> <nop>
+
+   " }
+
+   " Remap j/k to move by displayed lines {
+
+      nnoremap j gj
+      nnoremap k gk
+
+   " }
+
+   " fold ply
+   nnoremap <leader>ff za
+   
+   " Strip trailing whitespace
+   nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+   " Shortcut for opening .vimrc in a new split
+   nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+
+
+   " Shortcut for new vertical split
+   nnoremap <leader>w <C-w>v<C-w>l
+
+   " Moving around splits {
+
+      nnoremap <C-h> <C-w>h
+      nnoremap <C-j> <C-w>j
+      nnoremap <C-k> <C-w>k
+      nnoremap <C-l> <C-w>l
+
+   " }
+
+   " have semicolon default to colon in normal and visual mode
+   nnoremap ; :
+   vnoremap ; :
+
+   " Plugin Keybindings {
+
+      if filereadable(expand("~/.vimrc.plugins.keybindings"))
+         source ~/.vimrc.plugins.keybindings
+      endif
+
+   " }
+
+
+" }
+
+" Filetype Presets {
+
+   " General {
+
+      au BufRead,BufNewFile *.* set tabstop=3
+      au BufRead,BufNewFile *.* set shiftwidth=3
+      au BufRead,BufNewFile *.* set softtabstop=3
+
+   " }
+
+   " pro*C presets {
+
+      au BufRead,BufNewFile *.pc set filetype=esqlc
+
+   " }
+
+   " YACC presets {
+
+      au BufRead,BufNewFile *.ypp set filetype=yacc
+
+   " }
+
+   " Haskell presets {
+
+      au BufRead,BufNewFile *.hs set tabstop=4
+      au BufRead,BufNewFile *.hs set shiftwidth=4
+      au BufRead,BufNewFile *.hs set softtabstop=4
+      au BufEnter *.hs compiler ghc
+
+   " }
+
+   " OCAML presets {
+
+      autocmd FileType ocaml source /Users/dbell/.opam/system/share/typerex/ocp-indent/ocp-indent.vim
+
+   " }
+
+" }

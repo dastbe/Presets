@@ -30,7 +30,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
+ DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
@@ -48,10 +48,13 @@ plugins=(brew git rbenv vi-mode vundle)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export ORACLE_HOME=/bin/oracle/instantclient_11_2
-export PATH=/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:$ORACLE_HOME:$ORACLE_HOME/sdk
+#export ORACLE_HOME=/bin/oracle/instantclient_11_2
+export PATH=/usr/local/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin:~/.cabal/bin/
 
 bindkey -v
 
 # Additional razzle-dazzle
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/bin/oracle/instantclient_11_2
+#export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/bin/oracle/instantclient_11_2
+
+# OPAM configuration
+. /Users/dbell/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
