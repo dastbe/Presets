@@ -1,11 +1,12 @@
 " Environment {
 
-   " Initialization {
+   " Begin Initialization {
 
       set nocompatible
       filetype off
-      set rtp+=~/.vim/bundle/vundle/
-      call vundle#rc()
+      set rtp+=~/.vim/bundle/neobundle.vim/
+      call neobundle#begin(expand('~/.vim/bundle'))
+      NeoBundleFetch 'Shougo/neobundle.vim'
 
    " }
 
@@ -17,13 +18,17 @@
 
    " }
 
+   " End Initialization {
+
+      call neobundle#end()
+      syntax on
+      filetype plugin indent on
+
+   " }
+
 " }
 
 " Settings {
-
-   " Enable syntax and plugins
-   syntax on
-   filetype plugin indent on
 
    " Define colorscheme
    set background=dark
@@ -163,6 +168,7 @@
 
          " Use an undo file
          set undofile
+         set undodir=./.backup,/tmp
       endif
 
    " }
@@ -259,31 +265,12 @@
       au BufRead,BufNewFile *.* set softtabstop=3
 
    " }
+ 
+   " Rust {
 
-   " pro*C presets {
-
-      au BufRead,BufNewFile *.pc set filetype=esqlc
-
-   " }
-
-   " YACC presets {
-
-      au BufRead,BufNewFile *.ypp set filetype=yacc
-
-   " }
-
-   " Haskell presets {
-
-      au BufRead,BufNewFile *.hs set tabstop=4
-      au BufRead,BufNewFile *.hs set shiftwidth=4
-      au BufRead,BufNewFile *.hs set softtabstop=4
-      au BufEnter *.hs compiler ghc
-
-   " }
-
-   " OCAML presets {
-
-      autocmd FileType ocaml source /Users/dbell/.opam/system/share/typerex/ocp-indent/ocp-indent.vim
+      au BufRead,BufNewFile *.rs set tabstop=4
+      au BufRead,BufNewFile *.rs set shiftwidth=4
+      au BufRead,BufNewFile *.rs set softtabstop=4
 
    " }
 

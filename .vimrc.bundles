@@ -1,27 +1,6 @@
-" Installed Bundles
-   " Vundle DO NOT DELETE {
-      Bundle 'gmarik/vundle'
-   " }
-
-   " Vundle-defined Bundles {
-      Bundle 'go.vim'
-      Bundle 'Gundo'
-      Bundle 'Tabular'
-   " }
-
-   " GitHub-defined Bundles {
-      Bundle 'airblade/vim-gitgutter'
-      Bundle 'derekwyatt/vim-scala'
-      Bundle 'flazz/vim-colorschemes'
-      Bundle 'lukerandall/haskellmode-vim'
-      if executable('ctags')
-         Bundle 'majutsushi/tagbar'
-      endif
-      Bundle 'mbbill/undotree'
-      Bundle 'scrooloose/nerdtree'
-      Bundle 'scrooloose/nerdcommenter'
-      Bundle 'travitch/hasksyn'
-      Bundle 'tpope/vim-fugitive'
-      Bundle 'tpope/vim-surround'
+" Installed NeoBundles
+   " GitHub-defined NeoBundles {
+      NeoBundle 'flazz/vim-colorschemes'
+      NeoBundle 'sheerun/vim-polyglot'
    " }
 " }
