@@ -173,14 +173,6 @@
 
    " }
 
-   " Plugin Settings {
-
-      if filereadable(expand("~/.vimrc.plugins.settings"))
-         source ~/.vimrc.plugins.settings
-      endif
-
-   " }
-
 " }
 
 " KeyBindings {
@@ -244,15 +236,6 @@
    " have semicolon default to colon in normal and visual mode
    nnoremap ; :
    vnoremap ; :
-
-   " Plugin Keybindings {
-
-      if filereadable(expand("~/.vimrc.plugins.keybindings"))
-         source ~/.vimrc.plugins.keybindings
-      endif
-
-   " }
-
 
 " }
 
