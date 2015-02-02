@@ -1,0 +1,131 @@
+#!/bin/zsh
+
+# move ourselves into the scripts directory
+canonical="$(dirname "$0")"
+
+# Defaults
+ZSH_PATH=/usr/local/bin/zsh
+
+# Env arguments
+
+taps=(
+   caskroom/cask
+   caskroom/versions
+   caskroom/fonts
+)
+
+binaries=(
+   ack
+   cabal-install
+   coreutils
+   findutils
+   git
+   hub
+   leiningen
+   maven
+   mackup
+   rbenv
+   ruby-build
+   tarsnap
+   tree
+   vim
+   zsh
+   zsh-syntax-highlighting
+)
+
+apps=(
+   alfred
+   dropbox
+   eclipse-java
+   firefox
+   flux
+   google-chrome
+   github
+   intellij-idea
+   iterm2
+   macvim
+   qlmarkdown
+   rubymine
+   skype
+   spotify
+   sublime-text3
+   tarsnap
+   transmission
+   virtualbox
+   vagrant
+)
+
+# fonts
+fonts=(
+   font-source-code-pro
+)
+
+# Try and install xcode if necessary
+if xcode-select -p &> /dev/null
+then
+   print "XCode CLI tools already installed, skipping"
+else
+   print "Installing XCode CLI..."
+   xcode-select --install
+fi
+
+# Install homebrew, and check the path
+if command -v brew &> /dev/null
+then
+   print "Homebrew already installed, skipping"
+else
+   print "Installing Homebrew"
+   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   brew update
+fi
+
+for tap in $taps
+do
+   brew tap $tap
+done
+
+# Install homebrew cask
+if brew cask &> /dev/null
+then
+   print "Homebrew Cask installed, skipping"
+else
+   print "Installing Homebrew Cask"
+   brew install caskroom/cask/brew-cask
+fi
+
+# Install homebrew binaries
+print "installing binaries..."
+brew install ${binaries[@]}
+brew cleanup
+
+# Install homebrew apps
+print "installing apps..."
+brew cask install --appdir="/Applications" ${apps[@]}
+
+# Install homebrew fonts
+print "installing fonts..."
+#brew tap caskroom/fonts
+brew cask install ${fonts[@]}
+
+# Set up zsh
+if ! grep "$ZSH_PATH" /etc/shells &> /dev/null
+then
+   print "Appending zsh [$ZSH_PATH] to approved shell list (Password Required)..."
+   printf "/usr/local/bin/zsh" | sudo tee -a /etc/shells &> /dev/null
+fi
+
+if [ $SHELL != $ZSH_PATH ]
+then
+   print "Setting Homebrew zsh [$ZSH_PATH] to default shell (Password Required)..."
+   chsh -u $USER -s $ZSH_PATH
+fi
+
+print "Linking dotfiles..."
+ln -s $canonical/dotfiles/vimrc $HOME/.vimrc
+ln -s $canonical/dotfiles/vimrc $HOME/.vimrc.bundles
+ln -s $canonical/dotfiles/vim $HOME/.vim
+ln -s $canonical/dotfiles/zshrc $HOME/.zshrc
+ln -s $canonical/dotfiles/zsh $HOME/.zsh
+
+# Open the best terminal in the world
+open /Applications/iTerm.app

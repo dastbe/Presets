@@ -91,10 +91,10 @@
    au FocusLost * :wa
    
    " Fold based on syntax of filetype
-   set foldmethod=syntax
+   " set foldmethod=syntax
 
    " Auto-fold starting at the 8th ply
-   set foldlevelstart=8
+   " set foldlevelstart=8
    
    " Text wrapping {
 
