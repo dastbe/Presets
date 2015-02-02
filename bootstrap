@@ -121,11 +121,16 @@ then
 fi
 
 print "Linking dotfiles..."
-ln -s $canonical/dotfiles/vimrc $HOME/.vimrc
-ln -s $canonical/dotfiles/vimrc $HOME/.vimrc.bundles
 ln -s $canonical/dotfiles/vim $HOME/.vim
+ln -s $canonical/dotfiles/vimrc $HOME/.vimrc
+ln -s $canonical/dotfiles/vimrc.bundles $HOME/.vimrc.bundles
 ln -s $canonical/dotfiles/zshrc $HOME/.zshrc
 ln -s $canonical/dotfiles/zsh $HOME/.zsh
+
+# Set up vim
+# print "Generating neobundle..."
+# curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+vim +NeoBundleInstall +qall
 
 # Open the best terminal in the world
 open /Applications/iTerm.app

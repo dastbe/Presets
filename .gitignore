@@ -1,3 +1,6 @@
 *.un~
 .vim/*
 .DS_Store
+
+# remove when I want to upgrade neobundle
+dotfiles/vim/*
