@@ -1,0 +1,40 @@
+[user]
+	name = David Bell
+   email = dastbe@me.com
+[core]
+   editor = vim
+   whitespace = trailing-space,space-before-tab
+[web]
+   browser = safari
+[instaweb]
+   httpd = apache2 -f
+[rerere]
+   enabled = 1
+   autoupdate = 1
+[push]
+   default = simple
+[color]
+   ui = auto
+[color "branch"]
+   current = yellow bold
+   local = green bold
+   remote = cyan bold
+[color "diff"]
+   meta = yellow bold
+   frag = magenta bold
+   old = red bold
+   new = green bold
+   whitespace = red reverse
+[color "status"]
+   added = green bold
+   changed = yellow bold
+   untracked = red bold
+[diff]
+   tool = vimdiff
+[difftool]
+   prompt = false
+[merge]
+   tool = vimdiff
+[alias]
+   co = checkout
+   st = status

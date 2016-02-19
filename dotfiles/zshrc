@@ -40,6 +40,9 @@ alias t='tail -f'
 # Better grep
 alias grep='grep --color'
 
+# Force vi to alias the most specific vim on path
+alias vi=vim
+
 # For faster cd navigation
 alias -g ..='../'
 alias -g ...='../../'
@@ -50,9 +53,21 @@ alias -g .....='../../../../'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
 # Syntax Highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -e /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]
+then 
+   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+if [ -e /usr/local/share/zsh/site-functions/_aws ]
+then 
+   source /usr/local/share/zsh/site-functions/_aws
+fi
 
 # Set up Homebrew path
 export PATH="/usr/local/bin:$PATH"
 
-function gi() { curl http://www.gitignore.io/api/$@ ;}
+# Set up rbenv path
+if command -v rbenv > /dev/null
+then
+   export PATH="/Users/dastbe/.rbenv/shims:$PATH"
+fi

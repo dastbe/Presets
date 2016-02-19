@@ -2,5 +2,12 @@
    " GitHub-defined NeoBundles {
       NeoBundle 'flazz/vim-colorschemes'
       NeoBundle 'sheerun/vim-polyglot'
+      NeoBundle 'airblade/vim-gitgutter'
+      NeoBundle 'tpope/vim-surround'
+      NeoBundle 'mattn/emmet-vim'
+      NeoBundle 'lambdatoast/elm.vim'
+      NeoBundle 'neovimhaskell/haskell-vim'
+      NeoBundle 'eagletmt/ghcmod-vim'
+      NeoBundle 'dag/vim-fish'
    " }
 " }

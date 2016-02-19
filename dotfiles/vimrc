@@ -6,7 +6,7 @@
       filetype off
       set rtp+=~/.vim/bundle/neobundle.vim/
       call neobundle#begin(expand('~/.vim/bundle'))
-      " NeoBundleFetch 'Shougo/neobundle.vim'
+      NeoBundleFetch 'Shougo/neobundle.vim'
 
    " }
 
@@ -27,6 +27,9 @@
    " }
 
 " }
+
+   " Update bundles
+   NeoBundleCheck
 
 " Settings {
 
@@ -181,7 +184,7 @@
    let mapleader = ","
 
    " Rebind for leaving insert mode
-   inoremap jj <ESC>
+   " inoremap jj <ESC>
    
    " Rebind search to use magic mode
    nnoremap / /\v
@@ -243,9 +246,9 @@
 
    " General {
 
-      au BufRead,BufNewFile *.* set tabstop=3
-      au BufRead,BufNewFile *.* set shiftwidth=3
-      au BufRead,BufNewFile *.* set softtabstop=3
+      au BufRead,BufNewFile * set tabstop=3
+      au BufRead,BufNewFile * set shiftwidth=3
+      au BufRead,BufNewFile * set softtabstop=3
 
    " }
  
@@ -254,6 +257,14 @@
       au BufRead,BufNewFile *.rs set tabstop=4
       au BufRead,BufNewFile *.rs set shiftwidth=4
       au BufRead,BufNewFile *.rs set softtabstop=4
+
+   " }
+   
+   " Ruby {
+
+      au BufRead,BufNewFile *.rb set tabstop=2
+      au BufRead,BufNewFile *.rb set shiftwidth=2
+      au BufRead,BufNewFile *.rb set softtabstop=2
 
    " }
 

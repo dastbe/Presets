@@ -1,64 +1,11 @@
 #!/bin/zsh
 
 # move ourselves into the scripts directory
-canonical="$(dirname "$0")"
+canonical="$PWD"
 
 # Defaults
 ZSH_PATH=/usr/local/bin/zsh
 
-# Env arguments
-
-taps=(
-   caskroom/cask
-   caskroom/versions
-   caskroom/fonts
-)
-
-binaries=(
-   ack
-   cabal-install
-   coreutils
-   findutils
-   git
-   hub
-   leiningen
-   maven
-   mackup
-   rbenv
-   ruby-build
-   tarsnap
-   tree
-   vim
-   zsh
-   zsh-syntax-highlighting
-)
-
-apps=(
-   alfred
-   dropbox
-   eclipse-java
-   firefox
-   flux
-   google-chrome
-   github
-   intellij-idea
-   iterm2
-   macvim
-   qlmarkdown
-   rubymine
-   skype
-   spotify
-   sublime-text3
-   tarsnap
-   transmission
-   virtualbox
-   vagrant
-)
-
-# fonts
-fonts=(
-   font-source-code-pro
-)
 
 # Try and install xcode if necessary
 if xcode-select -p &> /dev/null
@@ -72,40 +19,17 @@ fi
 # Install homebrew, and check the path
 if command -v brew &> /dev/null
 then
-   print "Homebrew already installed, skipping"
+   print "Homebrew already installed, cleaning..."
+   brew uninstall --force `brew list`
 else
    print "Installing Homebrew"
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
    brew update
 fi
 
-for tap in $taps
-do
-   brew tap $tap
-done
-
-# Install homebrew cask
-if brew cask &> /dev/null
-then
-   print "Homebrew Cask installed, skipping"
-else
-   print "Installing Homebrew Cask"
-   brew install caskroom/cask/brew-cask
-fi
-
-# Install homebrew binaries
-print "installing binaries..."
-brew install ${binaries[@]}
-brew cleanup
-
-# Install homebrew apps
-print "installing apps..."
-brew cask install --appdir="/Applications" ${apps[@]}
-
-# Install homebrew fonts
-print "installing fonts..."
-#brew tap caskroom/fonts
-brew cask install ${fonts[@]}
+# Install Homebrew packages
+brew tap Homebrew/bundle
+brew bundle
 
 # Set up zsh
 if ! grep "$ZSH_PATH" /etc/shells &> /dev/null
@@ -121,11 +45,13 @@ then
 fi
 
 print "Linking dotfiles..."
-ln -s $canonical/dotfiles/vim $HOME/.vim
-ln -s $canonical/dotfiles/vimrc $HOME/.vimrc
-ln -s $canonical/dotfiles/vimrc.bundles $HOME/.vimrc.bundles
-ln -s $canonical/dotfiles/zshrc $HOME/.zshrc
-ln -s $canonical/dotfiles/zsh $HOME/.zsh
+echo $HOME
+ln -sf $canonical/dotfiles/gitconfig $HOME/.gitconfig
+ln -sf $canonical/dotfiles/vim $HOME/.vim
+ln -sf $canonical/dotfiles/vimrc $HOME/.vimrc
+ln -sf $canonical/dotfiles/vimrc.bundles $HOME/.vimrc.bundles
+ln -sf $canonical/dotfiles/zshrc $HOME/.zshrc
+ln -sf $canonical/dotfiles/zsh $HOME/.zsh
 
 # Set up vim
 # print "Generating neobundle..."
