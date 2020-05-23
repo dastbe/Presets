@@ -1,13 +1,16 @@
 " Installed NeoBundles
    " GitHub-defined NeoBundles {
+      NeoBundle 'chikamichi/mediawiki.vim'
       NeoBundle 'flazz/vim-colorschemes'
       NeoBundle 'sheerun/vim-polyglot'
+      NeoBundle 'plasticboy/vim-markdown'
       NeoBundle 'airblade/vim-gitgutter'
-      NeoBundle 'tpope/vim-surround'
-      NeoBundle 'mattn/emmet-vim'
+      NeoBundle 'godlygeek/tabular'
+      " NeoBundle 'tpope/vim-surround'
+      " NeoBundle 'mattn/emmet-vim'
       NeoBundle 'lambdatoast/elm.vim'
       NeoBundle 'neovimhaskell/haskell-vim'
-      NeoBundle 'eagletmt/ghcmod-vim'
-      NeoBundle 'dag/vim-fish'
+      " NeoBundle 'dag/vim-fish'
+      NeoBundle 'fatih/vim-go'
    " }
 " }

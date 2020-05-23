@@ -91,7 +91,7 @@
    "set listchars=tab:▸\ ,eol:¬
 
    " Save files when focus is lost
-   au FocusLost * :wa
+   " au FocusLost *
    
    " Fold based on syntax of filetype
    " set foldmethod=syntax
@@ -184,7 +184,7 @@
    let mapleader = ","
 
    " Rebind for leaving insert mode
-   " inoremap jj <ESC>
+   inoremap jj <ESC>
    
    " Rebind search to use magic mode
    nnoremap / /\v
@@ -240,6 +240,11 @@
    nnoremap ; :
    vnoremap ; :
 
+   " Turn off vim-markdown's dump autofold
+   let g:vim_markdown_folding_disabled = 1
+
+   nnoremap <leader>tf :TableFormat<CR>
+
 " }
 
 " Filetype Presets {
@@ -249,6 +254,14 @@
       au BufRead,BufNewFile * set tabstop=3
       au BufRead,BufNewFile * set shiftwidth=3
       au BufRead,BufNewFile * set softtabstop=3
+
+   " }
+   "
+   " General {
+
+      au BufRead,BufNewFile *.gradle set tabstop=2
+      au BufRead,BufNewFile *.gradle set shiftwidth=2
+      au BufRead,BufNewFile *.gradle set softtabstop=2
 
    " }
  
@@ -261,11 +274,14 @@
    " }
    
    " Ruby {
-
-      au BufRead,BufNewFile *.rb set tabstop=2
-      au BufRead,BufNewFile *.rb set shiftwidth=2
-      au BufRead,BufNewFile *.rb set softtabstop=2
-
+      autocmd Filetype ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
+   " }
+   
+   " Markdown {
+      au BufRead,BufNewFile *.md set textwidth=0 wrapmargin=0
+   " }
+   " GoLang {
+      au BufRead,BufNewFile *.go nnoremap <leader>r :GoRun<cr>
    " }
 
 " }

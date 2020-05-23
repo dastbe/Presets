@@ -1,3 +1,4 @@
+
 ## Autoload completions and prompts ##
 
 # Extend completion path locally
@@ -10,7 +11,7 @@ promptinit
 colors
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' formats "%{$fg[blue]%}%b%{$reset_color%}"
+zstyle ':vcs_info:git*' formats "(%{$fg[blue]%}%b%{$reset_color%})"
 precmd() {
    vcs_info
 }
@@ -18,11 +19,19 @@ precmd() {
 # Set prompt
 setopt prompt_subst
 
-PROMPT='[%{$fg[red]%}%n@%m%{$reset_color%} %{$fg[magenta]%}%~%{$reset_color%}]%# '
-RPROMPT='${vcs_info_msg_0_}'
+NEWLINE=$'\n'
+PROMPT='%{$fg[red]%}%n%{$reset_color%} on %{$fg[blue]%}%m%{$reset_color%} in %{$fg[magenta]%}%~%{$reset_color%} ${vcs_info_msg_0_}${NEWLINE}'
+RPROMPT=''
 
 # Set ViM mode
 bindkey -v
+
+## History ##
+export HISTSIZE=200000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
+
+setopt hist_ignore_all_dups
 
 ## Aliases ##
 
@@ -49,6 +58,9 @@ alias -g ...='../../'
 alias -g ....='../../../'
 alias -g .....='../../../../'
 
+# todo list
+alias todo='vim $HOME/notes/todo.md'
+
 # Copy as rsync
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
@@ -69,5 +81,17 @@ export PATH="/usr/local/bin:$PATH"
 # Set up rbenv path
 if command -v rbenv > /dev/null
 then
-   export PATH="/Users/dastbe/.rbenv/shims:$PATH"
+   export PATH="$HOME/.rbenv/shims:$PATH"
 fi
+
+if command -v pyenv > /dev/null
+then
+   export PATH="$(pyenv root)/shims:$PATH"
+fi
+
+# Golang
+export GOPATH=/workplace/golang
+export PATH=$PATH:$GOPATH/bin
+
+# Rust
+export PATH=$PATH:$HOME/.cargo/bin

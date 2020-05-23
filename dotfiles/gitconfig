@@ -1,9 +1,11 @@
 [user]
 	name = David Bell
-   email = dastbe@me.com
+   email = belldav@amazon.com
 [core]
    editor = vim
    whitespace = trailing-space,space-before-tab
+	pager = less -FMRiX
+	excludesfile = ~/.gitignore
 [web]
    browser = safari
 [instaweb]
@@ -38,3 +40,16 @@
 [alias]
    co = checkout
    st = status
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+   fixup = commit --fixup HEAD
+[amazon]
+	append-cr-url = true
+	pull-request-by-default = true
+[branch]
+	autosetuprebase = always
+	autosetupmerge= always
+[rebase]
+	autosquash = true
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
