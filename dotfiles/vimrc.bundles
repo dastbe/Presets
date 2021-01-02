@@ -6,11 +6,8 @@
       NeoBundle 'plasticboy/vim-markdown'
       NeoBundle 'airblade/vim-gitgutter'
       NeoBundle 'godlygeek/tabular'
-      " NeoBundle 'tpope/vim-surround'
-      " NeoBundle 'mattn/emmet-vim'
       NeoBundle 'lambdatoast/elm.vim'
       NeoBundle 'neovimhaskell/haskell-vim'
-      " NeoBundle 'dag/vim-fish'
       NeoBundle 'fatih/vim-go'
    " }
 " }
