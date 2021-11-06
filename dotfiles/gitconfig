@@ -1,6 +1,6 @@
 [user]
-	name = David Bell
-   email = belldav@amazon.com
+   name = David Bell
+   email = dastbe@uber.com
 [core]
    editor = vim
    whitespace = trailing-space,space-before-tab
